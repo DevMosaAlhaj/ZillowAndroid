@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Zillow</string>
+    <string name="app_logo">App Logo</string>
+    <string name="logo">Logo</string>
+    <string name="email_address">Email Address</string>
+    <string name="password">Password</string>
+    <string name="welcome_back">Welcome Back</string>
+    <string name="forget_password">Forget Password?</string>
+    <string name="remember_me">Remember Me</string>
+    <string name="don_t_have_account">Don’t have account?</string>
+    <string name="register_here">Register here.</string>
+    <string name="login">Login</string>
+    <string name="create_new_account">Create New Account</string>
+    <string name="register">Register</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="post_photo">Post Photo</string>
+    <string name="bookmark">Bookmark</string>
+    <string name="location">Location</string>
+</resources>
