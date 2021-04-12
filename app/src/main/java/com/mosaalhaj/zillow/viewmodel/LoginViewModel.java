@@ -82,7 +82,7 @@ public class LoginViewModel extends ViewModel {
 
 
                 } else
-                    refreshResponse = new Response<>(false,"Email or Password is incorrect",null);
+                    refreshResponse = new Response<>(false,"Refresh Token is incorrect",null);
 
                 liveData.setValue(refreshResponse);
             }

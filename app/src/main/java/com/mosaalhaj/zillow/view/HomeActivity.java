@@ -63,7 +63,8 @@ public class HomeActivity extends AppCompatActivity {
         homeViewModel.liveData.observe(this, response -> {
             if (response.isSucceeded()) {
 
-                if (response.getData().getPagesCount()>pageNumber){
+                if (response.getData().getPagesCount()>=pageNumber){
+
                     posts.addAll(response.getData().getData());
                     adapter.notifyDataSetChanged();
                 } else

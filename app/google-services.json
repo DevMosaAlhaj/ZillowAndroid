@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "636412775275",
+    "project_id": "zillow-b7f31",
+    "storage_bucket": "zillow-b7f31.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:636412775275:android:d717d84db9f2e5b18a1a2e",
+        "android_client_info": {
+          "package_name": "com.mosaalhaj.zillow"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "636412775275-h8k19ktvalrape4ml47hs24srfhas2he.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mosaalhaj.zillow",
+            "certificate_hash": "af4e354e2a28e5fbf7d80ade951b9b6e7d69c9f3"
+          }
+        },
+        {
+          "client_id": "636412775275-7glv79kecrla9bteh1ud8djvtp8f935b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD74-7aV96oavPwpd7UnGOoNVkvIjXTnGU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "636412775275-7glv79kecrla9bteh1ud8djvtp8f935b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

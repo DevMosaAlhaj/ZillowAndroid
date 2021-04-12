@@ -6,10 +6,13 @@ import com.mosaalhaj.zillow.response.PagingResponse;
 
 import java.util.ArrayList;
 
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
+import retrofit2.http.Multipart;
+import retrofit2.http.Part;
 import retrofit2.http.Path;
 
 public interface PostApiService {
@@ -21,6 +24,5 @@ public interface PostApiService {
             @Path("pageSize") int pageSize,
             @Header("Authorization") String token
             );
-
 
 }

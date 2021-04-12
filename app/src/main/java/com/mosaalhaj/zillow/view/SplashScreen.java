@@ -11,6 +11,7 @@ import android.os.Handler;
 
 import com.mosaalhaj.zillow.R;
 import com.mosaalhaj.zillow.response.LoginResponse;
+import com.mosaalhaj.zillow.service.MessagingService;
 import com.mosaalhaj.zillow.viewmodel.LoginViewModel;
 
 import static com.mosaalhaj.zillow.item.Constants.ACCESS_TOKEN;
@@ -59,6 +60,9 @@ public class SplashScreen extends AppCompatActivity {
             toLoginActivity();
 
 
+
+        Intent intent = new Intent(getBaseContext(), MessagingService.class);
+        startService(intent);
 
     }
 
