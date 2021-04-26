@@ -14,9 +14,6 @@ import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
@@ -25,7 +22,7 @@ import com.mosaalhaj.zillow.api.AuthApiService;
 import com.mosaalhaj.zillow.api.RetrofitSingleton;
 import com.mosaalhaj.zillow.model.Response;
 import com.mosaalhaj.zillow.response.LoginResponse;
-import com.mosaalhaj.zillow.view.HomeActivity;
+import com.mosaalhaj.zillow.ui.view.activity.HomeActivity;
 
 import java.util.Map;
 

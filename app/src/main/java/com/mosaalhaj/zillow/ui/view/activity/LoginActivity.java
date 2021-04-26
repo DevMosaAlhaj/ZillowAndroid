@@ -1,4 +1,4 @@
-package com.mosaalhaj.zillow.view;
+package com.mosaalhaj.zillow.ui.view.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -18,7 +18,7 @@ import com.mosaalhaj.zillow.R;
 import com.mosaalhaj.zillow.databinding.ActivityLoginBinding;
 import com.mosaalhaj.zillow.model.Response;
 import com.mosaalhaj.zillow.response.LoginResponse;
-import com.mosaalhaj.zillow.viewmodel.LoginViewModel;
+import com.mosaalhaj.zillow.ui.viewmodel.LoginViewModel;
 
 import static com.mosaalhaj.zillow.item.Constants.ACCESS_TOKEN;
 import static com.mosaalhaj.zillow.item.Constants.REFRESH_TOKEN;

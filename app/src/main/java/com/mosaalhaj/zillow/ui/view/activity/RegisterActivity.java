@@ -1,4 +1,4 @@
-package com.mosaalhaj.zillow.view;
+package com.mosaalhaj.zillow.ui.view.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,7 +13,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.mosaalhaj.zillow.R;
 import com.mosaalhaj.zillow.databinding.ActivityRegisterBinding;
 import com.mosaalhaj.zillow.model.User;
-import com.mosaalhaj.zillow.viewmodel.RegisterViewModel;
+import com.mosaalhaj.zillow.ui.viewmodel.RegisterViewModel;
 
 import static com.mosaalhaj.zillow.item.Constants.USER_EMAIL;
 import static com.mosaalhaj.zillow.item.Constants.USER_PASSWORD;

@@ -1,4 +1,4 @@
-package com.mosaalhaj.zillow.view;
+package com.mosaalhaj.zillow.ui.view.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
@@ -12,16 +12,13 @@ import android.os.Handler;
 import com.mosaalhaj.zillow.R;
 import com.mosaalhaj.zillow.response.LoginResponse;
 import com.mosaalhaj.zillow.service.MessagingService;
-import com.mosaalhaj.zillow.viewmodel.LoginViewModel;
+import com.mosaalhaj.zillow.ui.viewmodel.LoginViewModel;
 
 import static com.mosaalhaj.zillow.item.Constants.ACCESS_TOKEN;
 import static com.mosaalhaj.zillow.item.Constants.NOT_FOUND;
 import static com.mosaalhaj.zillow.item.Constants.REFRESH_TOKEN;
 import static com.mosaalhaj.zillow.item.Constants.REMEMBER_ME;
 import static com.mosaalhaj.zillow.item.Constants.SHARED_PREFERENCE_FILE;
-import static com.mosaalhaj.zillow.item.Constants.USER_EMAIL;
-import static com.mosaalhaj.zillow.item.Constants.USER_ID;
-import static com.mosaalhaj.zillow.item.Constants.USER_PASSWORD;
 
 public class SplashScreen extends AppCompatActivity {
 

@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.mosaalhaj.zillow.viewmodel.LoginViewModel" />
+            type="com.mosaalhaj.zillow.ui.viewmodel.LoginViewModel" />
     </data>
 
     <LinearLayout

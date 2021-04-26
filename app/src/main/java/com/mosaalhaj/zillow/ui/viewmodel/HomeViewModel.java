@@ -1,4 +1,4 @@
-package com.mosaalhaj.zillow.viewmodel;
+package com.mosaalhaj.zillow.ui.viewmodel;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;

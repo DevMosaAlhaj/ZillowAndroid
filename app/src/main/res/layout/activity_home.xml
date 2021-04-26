@@ -6,13 +6,12 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".view.HomeActivity">
+        tools:context=".ui.view.activity.HomeActivity">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/home_rv_posts"
+        <androidx.viewpager.widget.ViewPager
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            />
+            android:id="@+id/home_view_pager"/>
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:layout_width="match_parent"
