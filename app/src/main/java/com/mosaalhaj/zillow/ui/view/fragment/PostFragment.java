@@ -11,14 +11,13 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.mosaalhaj.zillow.R;
 import com.mosaalhaj.zillow.adapter.PostAdapter;
-import com.mosaalhaj.zillow.databinding.FragmentPostBinding;
 import com.mosaalhaj.zillow.model.Post;
 import com.mosaalhaj.zillow.ui.view.activity.LoginActivity;
 import com.mosaalhaj.zillow.ui.viewmodel.HomeViewModel;
@@ -28,7 +27,6 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 import static android.content.Context.MODE_PRIVATE;
-import static com.mosaalhaj.zillow.item.Constants.ACCESS_TOKEN;
 import static com.mosaalhaj.zillow.item.Constants.NOT_FOUND;
 import static com.mosaalhaj.zillow.item.Constants.REFRESH_TOKEN;
 import static com.mosaalhaj.zillow.item.Constants.SHARED_PREFERENCE_FILE;
@@ -43,6 +41,7 @@ public class PostFragment extends Fragment {
     private SharedPreferences preferences;
     private HomeViewModel homeViewModel;
     private int pageNumber;
+    private RecyclerView rv_postsList;
 
     public PostFragment() {
     }
@@ -52,34 +51,29 @@ public class PostFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         posts = new ArrayList<>();
-        posts.add(new Post());
         adapter = new PostAdapter(getContext(), posts);
         pageNumber = 1;
         preferences = Objects.requireNonNull(getActivity()).getSharedPreferences(SHARED_PREFERENCE_FILE, MODE_PRIVATE);
         homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
 
-        return inflater.inflate(R.layout.fragment_post,container,false);
+        View view = LayoutInflater.from(getContext()).inflate(R.layout.fragment_post, null);
+
+        rv_postsList = view.findViewById(R.id.fragment_post_rv_posts);
+        return view;
     }
 
     @SuppressLint("CommitPrefEdits")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
-        FragmentPostBinding binding =
-                DataBindingUtil.setContentView(getActivity(), R.layout.fragment_post);
 
-        binding.setLifecycleOwner(this);
-
-
-        binding.fragmentPostRvPosts.setAdapter(adapter);
+        rv_postsList.setAdapter(adapter);
 
         GridLayoutManager manager = new GridLayoutManager(getContext(), 1);
 
-        binding.fragmentPostRvPosts.setLayoutManager(manager);
+        rv_postsList.setLayoutManager(manager);
 
-        //binding.homeBar.setSelectedItemId(R.id.home_nav_bar_home);
-
-         getPosts();
+        getPosts();
 
         homeViewModel.liveData.observe(this, response -> {
             if (response.isSucceeded()) {
@@ -114,7 +108,7 @@ public class PostFragment extends Fragment {
 
             viewModel.liveData.observe(this, response -> {
                 if (response.getData() != null)
-                    homeViewModel.getPosts(pageNumber, "Bearer "+response.getData().getTokenResponse().getToken());
+                    homeViewModel.getPosts(pageNumber, "Bearer " + response.getData().getTokenResponse().getToken());
                 else {
                     Intent intent = new Intent(getContext(), LoginActivity.class);
                     startActivity(intent);

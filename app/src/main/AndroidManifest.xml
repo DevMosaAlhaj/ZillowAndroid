@@ -33,6 +33,10 @@
             </intent-filter>
         </service>
 
+        <meta-data
+            android:name="com.mosaalhaj.zillow.item.OkHttpGlideModule"
+            android:value="GlideModule" />
+
     </application>
 
 </manifest>

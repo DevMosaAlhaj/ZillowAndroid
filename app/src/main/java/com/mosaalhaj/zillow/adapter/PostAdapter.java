@@ -1,19 +1,24 @@
 package com.mosaalhaj.zillow.adapter;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.mosaalhaj.zillow.R;
 import com.mosaalhaj.zillow.databinding.HomeListItemBinding;
 import com.mosaalhaj.zillow.model.Post;
 
 import java.util.ArrayList;
+
+import static com.mosaalhaj.zillow.item.Constants.API_URL;
 
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder> {
 
@@ -37,7 +42,15 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
     @Override
     public void onBindViewHolder(@NonNull PostViewHolder holder, int position) {
 
-        holder.binding.homeListItemTvName.setText(posts.get(position).getName());
+        Post post = posts.get(position);
+
+        holder.binding.homeListItemTvName.setText(post.getName());
+        if (post.getImages()!= null && !post.getImages().isEmpty()) {
+            Glide.with(context)
+                    .load(API_URL+post.getImages().get(0).getUrl())
+                    .placeholder(R.drawable.post_image)
+                    .centerCrop().into(holder.binding.homeListItemIvPostPhoto);
+        }
 
     }
 
