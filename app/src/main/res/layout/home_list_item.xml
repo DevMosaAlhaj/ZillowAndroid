@@ -29,13 +29,24 @@
                  android:layout_width="match_parent"
                  android:layout_height="wrap_content">
 
-                 <ImageView
+                <!-- <ImageView
                      android:id="@+id/home_list_item_iv_post_photo"
                      android:layout_width="match_parent"
                      android:layout_height="wrap_content"
                      android:contentDescription="@string/post_photo"
                      android:scaleType="centerCrop"
-                     android:src="@drawable/post_image" />
+                     android:src="@drawable/post_image" /> -->
+
+                 <com.synnapps.carouselview.CarouselView
+                     android:id="@+id/home_list_item_cv_post_photos"
+                     android:layout_width="match_parent"
+                     android:layout_height="150dp"
+                     app:fillColor="#FFFFFFFF"
+                     app:pageColor="#00000000"
+                     app:radius="6dp"
+                     app:slideInterval="3000"
+                     app:strokeColor="#FF777777"
+                     app:strokeWidth="1dp"/>
 
                  <ImageView
                      android:id="@+id/home_list_item_iv_bookmark"
