@@ -19,21 +19,19 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
 
-
         ActivityHomeBinding binding
-                =  DataBindingUtil.setContentView(HomeActivity.this,R.layout.activity_home);
+                = DataBindingUtil.setContentView(HomeActivity.this, R.layout.activity_home);
 
-        HomePagerAdapter adapter = new HomePagerAdapter(getSupportFragmentManager());
+        HomePagerAdapter adapter = new HomePagerAdapter(HomeActivity.this);
 
         binding.homeViewPager.setAdapter(adapter);
-
 
 
         binding.homeViewPager.setCurrentItem(0);
 
         binding.homeBar.setOnNavigationItemSelectedListener(item -> {
 
-            switch (item.getItemId()){
+            switch (item.getItemId()) {
                 case R.id.home_nav_bar_home:
                     binding.homeViewPager.setCurrentItem(0);
                     break;
@@ -49,9 +47,7 @@ public class HomeActivity extends AppCompatActivity {
         });
 
 
-
     }
-
 
 
 }
