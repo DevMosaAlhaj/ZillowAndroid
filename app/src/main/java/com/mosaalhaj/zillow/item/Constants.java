@@ -12,8 +12,6 @@ public class Constants {
     public final static String NOT_FOUND = "notFound";
     public final static String UN_AUTHORIZED = "401";
     public final static String CHANNEL_ID = "Channel_997528111";
-    public final static String POST_ARRAY = "PostArray";
-    public final static String CURRENT_POST= "CurrentPost";
     public static String API_URL = "https://10.0.2.2:5001/" ;
 
     public final static String SHARED_PREFERENCE_FILE = "userDataFile";
