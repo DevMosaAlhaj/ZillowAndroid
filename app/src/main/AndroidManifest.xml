@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.mosaalhaj.zillow">
 
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -11,30 +11,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Zillow">
-        <activity android:name=".ui.view.activity.PostActivity"></activity>
-        <activity
-            android:name=".ui.view.activity.RegisterActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.view.activity.HomeActivity"
-            android:screenOrientation="portrait">
+        <activity android:name=".ui.view.activity.RegisterActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".ui.view.activity.HomeActivity" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ui.view.activity.LoginActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.view.activity.SplashScreen"
-            android:screenOrientation="portrait"></activity>
+        <activity android:name=".ui.view.activity.LoginActivity" android:screenOrientation="portrait" />
+        <activity android:name=".ui.view.activity.SplashScreen" android:screenOrientation="portrait">
+
+        </activity>
 
         <service
             android:name=".service.MessagingService"
-            android:enabled="true"
-            android:exported="false">
+            android:exported="false"
+            android:enabled="true">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
@@ -43,6 +36,7 @@
         <meta-data
             android:name="com.mosaalhaj.zillow.item.OkHttpGlideModule"
             android:value="GlideModule" />
+
     </application>
 
 </manifest>
