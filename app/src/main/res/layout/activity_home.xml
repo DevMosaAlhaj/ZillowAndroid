@@ -17,9 +17,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:layout_margin="20dp"
+            android:layout_margin="@dimen/_20sdp"
             android:background="@drawable/bottom_navigation_background"
-            app:elevation="15dp"
+            app:elevation="@dimen/_15sdp"
             app:itemIconTint="@color/bottom_navigation_item"
             android:id="@+id/home_bar"
             app:menu="@menu/home_navigation_bottom_bar_menu" />

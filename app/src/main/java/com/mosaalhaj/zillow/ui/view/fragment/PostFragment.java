@@ -34,7 +34,7 @@ public class PostFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_post, container, false);
 
-        tv_title = view.findViewById(R.id.fragment_post_tv_title);
+
         return view;
     }
 
@@ -42,7 +42,7 @@ public class PostFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        tv_title.setText(post.toString());
+
 
     }
 }

@@ -13,8 +13,8 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_gravity="center"
-            android:layout_marginTop="50dp"
-            android:padding="10dp">
+            android:layout_marginTop="@dimen/_50sdp"
+            android:padding="@dimen/_10sdp">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -27,9 +27,9 @@
                 android:layout_height="wrap_content"
                 android:text="@string/app_name"
                 android:layout_gravity="center"
-                android:textSize="32sp"
+                android:textSize="@dimen/_32ssp"
                 android:textStyle="bold"
-                android:padding="10dp"
+                android:padding="@dimen/_10sdp"
                 android:textColor="@color/material_blue"
                 android:fontFamily="monospace"/>
 
@@ -38,14 +38,14 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginBottom="@dimen/_20sdp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
             android:gravity="center"
             android:text="@string/create_new_account"
             android:textColor="@color/black"
-            android:textSize="20sp"
+            android:textSize="@dimen/_20ssp"
             />
 
         <LinearLayout
@@ -58,10 +58,10 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:elevation="5dp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:elevation="@dimen/_5sdp"
                 android:hint="@string/first_name"
                 android:textColorHint="@color/black"
                 app:startIconDrawable="@drawable/person"
@@ -80,10 +80,10 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:elevation="5dp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:elevation="@dimen/_5sdp"
                 android:hint="@string/last_name"
                 android:textColorHint="@color/black"
                 app:startIconDrawable="@drawable/person"
@@ -102,10 +102,10 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:elevation="5dp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:elevation="@dimen/_5sdp"
                 android:hint="@string/email_address"
                 android:textColorHint="@color/black"
                 app:startIconDrawable="@drawable/email"
@@ -123,10 +123,10 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:elevation="5dp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:elevation="@dimen/_5sdp"
                 android:hint="@string/phone_number"
                 android:textColorHint="@color/black"
                 app:startIconDrawable="@drawable/phone"
@@ -144,10 +144,10 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:elevation="5dp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:elevation="@dimen/_5sdp"
                 android:hint="@string/password"
                 android:textColorHint="@color/black"
                 app:passwordToggleEnabled="false"
@@ -170,14 +170,14 @@
                 android:id="@+id/register_bt_register"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="40dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="40dp"
+                android:layout_marginStart="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_40sdp"
                 android:background="@drawable/app_button_background_disabled"
                 android:text="@string/register"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
-                android:textSize="19sp"
+                android:textSize="@dimen/_19ssp"
                 android:enabled="false" />
 
 

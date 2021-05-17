@@ -10,9 +10,9 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        app:cardCornerRadius="15dp"
-        app:cardElevation="30dp">
+        android:layout_margin="@dimen/_15sdp"
+        app:cardCornerRadius="@dimen/_15sdp"
+        app:cardElevation="@dimen/_30sdp">
 
 
      <FrameLayout
@@ -40,20 +40,20 @@
                  <com.synnapps.carouselview.CarouselView
                      android:id="@+id/home_list_item_cv_post_photos"
                      android:layout_width="match_parent"
-                     android:layout_height="150dp"
+                     android:layout_height="@dimen/_150sdp"
                      app:fillColor="#FFFFFFFF"
                      app:pageColor="#00000000"
-                     app:radius="6dp"
+                     app:radius="@dimen/_6sdp"
                      app:slideInterval="3000"
                      app:strokeColor="#FF777777"
-                     app:strokeWidth="1dp"/>
+                     app:strokeWidth="@dimen/_1sdp"/>
 
                  <ImageView
                      android:id="@+id/home_list_item_iv_bookmark"
                      android:layout_width="wrap_content"
                      android:layout_height="wrap_content"
                      android:layout_gravity="top|end"
-                     android:layout_margin="10dp"
+                     android:layout_margin="@dimen/_10sdp"
                      android:contentDescription="@string/bookmark"
                      android:src="@drawable/bookmark" />
 
@@ -68,44 +68,46 @@
                  android:layout_gravity="bottom"
                  android:orientation="vertical"
                  android:background="#5CB6B3B3"
-                 android:padding="10dp">
+                 android:padding="@dimen/_10sdp">
 
                  <LinearLayout
                      android:layout_width="match_parent"
                      android:layout_height="wrap_content"
                      android:orientation="horizontal"
-                     android:layout_marginStart="10dp"
-                     android:layout_marginEnd="10dp"
-                     android:layout_marginTop="10dp">
+                     android:layout_marginStart="@dimen/_10sdp"
+                     android:layout_marginEnd="@dimen/_10sdp"
+                     android:layout_marginTop="@dimen/_10sdp">
                      <TextView
                          android:layout_width="wrap_content"
                          android:layout_height="wrap_content"
                          android:text="$23,500"
                          android:textStyle="bold"
                          android:textColor="@color/black"
-                         android:textSize="18sp"
+                         android:textSize="@dimen/_18ssp"
                          android:id="@+id/home_list_item_tv_price"/>
 
                      <TextView
                          android:layout_width="wrap_content"
                          android:layout_height="wrap_content"
                          android:text="Studio Apartment"
-                         android:layout_marginStart="10dp"
+                         android:textSize="@dimen/_12ssp"
+                         android:layout_marginStart="@dimen/_10sdp"
                          android:id="@+id/home_list_item_tv_name"/>
                  </LinearLayout>
 
                  <TextView
                      android:layout_width="wrap_content"
                      android:layout_height="wrap_content"
+                     android:textSize="@dimen/_12ssp"
                      android:text="23 Cross, HRBR Layout, Bangalore"
-                     android:layout_marginStart="10dp"
+                     android:layout_marginStart="@dimen/_10sdp"
                      android:id="@+id/home_list_item_tv_address"/>
 
                  <LinearLayout
                      android:layout_width="match_parent"
                      android:layout_height="wrap_content"
                      android:orientation="horizontal"
-                     android:padding="5dp"
+                     android:padding="@dimen/_5sdp"
                      android:gravity="center"
                      android:layout_margin="20dp">
                      <ImageView
@@ -116,8 +118,8 @@
                          android:layout_width="wrap_content"
                          android:layout_height="wrap_content"
                          android:text="3 Bed"
-                         android:layout_marginStart="5dp"
-                         android:layout_marginEnd="10dp"/>
+                         android:layout_marginStart="@dimen/_5sdp"
+                         android:layout_marginEnd="@dimen/_10sdp"/>
                      <ImageView
                          android:layout_width="wrap_content"
                          android:layout_height="wrap_content"
@@ -126,8 +128,8 @@
                          android:layout_width="wrap_content"
                          android:layout_height="wrap_content"
                          android:text="2 Bath"
-                         android:layout_marginStart="5dp"
-                         android:layout_marginEnd="10dp"/>
+                         android:layout_marginStart="@dimen/_5sdp"
+                         android:layout_marginEnd="@dimen/_10sdp"/>
                      <ImageView
                          android:layout_width="wrap_content"
                          android:layout_height="wrap_content"
@@ -136,8 +138,8 @@
                          android:layout_width="wrap_content"
                          android:layout_height="wrap_content"
                          android:text="2 Barking"
-                         android:layout_marginStart="5dp"
-                         android:layout_marginEnd="10dp"/>
+                         android:layout_marginStart="@dimen/_5sdp"
+                         android:layout_marginEnd="@dimen/_10sdp"/>
                  </LinearLayout>
 
              </LinearLayout>
@@ -149,8 +151,8 @@
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
              android:layout_gravity="center|end"
-             android:layout_marginTop="10dp"
-             android:elevation="15dp"
+             android:layout_marginTop="@dimen/_10sdp"
+             android:elevation="@dimen/_15sdp"
              android:contentDescription="@string/location"
              android:src="@drawable/location" />
 
