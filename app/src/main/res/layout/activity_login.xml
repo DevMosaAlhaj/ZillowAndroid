@@ -79,6 +79,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@android:color/white"
+                    android:textSize="@dimen/_14ssp"
                     android:inputType="textEmailAddress"
                     android:singleLine="true" />
 
@@ -103,6 +104,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@android:color/white"
+                    android:textSize="@dimen/_14ssp"
                     android:inputType="textPassword"
                     android:id="@+id/login_et_password"
                     android:singleLine="true" />
@@ -115,6 +117,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_20sdp"
                 android:layout_marginEnd="@dimen/_20sdp"
+                android:textSize="@dimen/_14ssp"
                 android:text="@string/remember_me" />
 
             <TextView
@@ -149,7 +152,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/register_here"
                     android:textColor="@android:color/holo_blue_dark"
-                    android:textSize="20sp"
+                    android:textSize="@dimen/_14ssp"
                     android:id="@+id/login_tv_register"
                     android:paddingStart="@dimen/_5sdp"
                     android:paddingEnd="@dimen/_5sdp"/>
@@ -161,7 +164,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_40sdp"
-                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_25sdp"
+                android:layout_marginBottom="@dimen/_25sdp"
                 android:layout_marginEnd="@dimen/_40sdp"
                 android:background="@drawable/app_button_background_disabled"
                 android:text="@string/login"

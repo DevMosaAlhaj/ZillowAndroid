@@ -21,7 +21,7 @@
             android:background="@drawable/bottom_navigation_background"
             app:elevation="@dimen/_15sdp"
             app:itemIconTint="@color/bottom_navigation_item"
-            android:id="@+id/home_bar"
+            android:id="@+id/home_bottom_nav"
             app:menu="@menu/home_navigation_bottom_bar_menu" />
 
     </FrameLayout>

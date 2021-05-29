@@ -13,7 +13,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_gravity="center"
-            android:layout_marginTop="@dimen/_50sdp"
+            android:layout_marginTop="@dimen/_30sdp"
             android:padding="@dimen/_10sdp">
 
             <ImageView
@@ -71,6 +71,7 @@
                     android:id="@+id/register_et_first_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textSize="@dimen/_13ssp"
                     android:background="@android:color/white"
                     android:inputType="textPersonName"
                     android:singleLine="true" />
@@ -92,6 +93,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/register_et_last_name"
                     android:layout_width="match_parent"
+                    android:textSize="@dimen/_13ssp"
                     android:layout_height="wrap_content"
                     android:background="@android:color/white"
                     android:inputType="textPersonName"
@@ -114,6 +116,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/register_et_email"
                     android:layout_width="match_parent"
+                    android:textSize="@dimen/_13ssp"
                     android:layout_height="wrap_content"
                     android:background="@android:color/white"
                     android:inputType="textEmailAddress"
@@ -137,6 +140,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@android:color/white"
+                    android:textSize="@dimen/_13ssp"
                     android:inputType="phone"
                     android:singleLine="true" />
 
@@ -160,6 +164,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@android:color/white"
+                    android:textSize="@dimen/_13ssp"
                     android:inputType="textPassword"
                     android:singleLine="true" />
 
@@ -171,7 +176,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_40sdp"
-                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_25sdp"
+                android:layout_marginBottom="@dimen/_25sdp"
                 android:layout_marginEnd="@dimen/_40sdp"
                 android:background="@drawable/app_button_background_disabled"
                 android:text="@string/register"
