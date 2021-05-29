@@ -20,14 +20,16 @@ import com.google.firebase.messaging.RemoteMessage;
 import com.mosaalhaj.zillow.R;
 import com.mosaalhaj.zillow.api.AuthApiService;
 import com.mosaalhaj.zillow.api.RetrofitSingleton;
-import com.mosaalhaj.zillow.model.Response;
+import com.mosaalhaj.zillow.model.MyRes;
 import com.mosaalhaj.zillow.response.LoginResponse;
 import com.mosaalhaj.zillow.ui.view.activity.HomeActivity;
 
 import java.util.Map;
 
-import retrofit2.Call;
-import retrofit2.Callback;
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Single;
+import io.reactivex.rxjava3.schedulers.Schedulers;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 
 import static com.mosaalhaj.zillow.item.Constants.ACCESS_TOKEN;
@@ -49,7 +51,7 @@ public class MessagingService extends FirebaseMessagingService {
         Retrofit retrofit = RetrofitSingleton.getInstance();
         messaging = FirebaseMessaging.getInstance();
         service = retrofit.create(AuthApiService.class);
-        notificationId = 1 ;
+        notificationId = 1;
     }
 
     @Override
@@ -61,17 +63,17 @@ public class MessagingService extends FirebaseMessagingService {
         accessToken = preferences.getString(ACCESS_TOKEN, NOT_FOUND);
         boolean isFcmRegistered = preferences.getBoolean(IS_FCM_REGISTERED, false);
 
-        if (!isFcmRegistered){
+        if (!isFcmRegistered) {
             messaging.getToken().addOnCompleteListener(task -> {
-                if (task.isSuccessful()){
-                    sendFcmTokenToServer(task.getResult(),"Bearer "+accessToken);
-                    Log.e("MessagingService","Get Fcm Token Successfully");
+                if (task.isSuccessful()) {
+                    sendFcmTokenToServer(task.getResult(), "Bearer " + accessToken);
+                    Log.e("MessagingService", "Get Fcm Token Successfully");
                 } else
-                    Log.e("MessagingService","Get Fcm Token Failure");
+                    Log.e("MessagingService", "Get Fcm Token Failure");
 
             });
         } else
-            Log.e("MessagingService","Fcm Token Already Register");
+            Log.e("MessagingService", "Fcm Token Already Register");
     }
 
     @Override
@@ -97,71 +99,55 @@ public class MessagingService extends FirebaseMessagingService {
     private void sendFcmTokenToServer(String fcmToken, String token) {
 
 
-        Call<Response<String>> fcmTokenCall = service.registerFcmToken(fcmToken, token);
+        Single<Response<MyRes<String>>> fcmTokenObservable = service.registerFcmToken(fcmToken, token);
 
 
-        fcmTokenCall.enqueue(new Callback<Response<String>>() {
-            @Override
-            public void onResponse(Call<Response<String>> call, retrofit2.Response<Response<String>> response) {
+        //noinspection ResultOfMethodCallIgnored
+        fcmTokenObservable.subscribeOn(Schedulers.io())
+                .subscribeOn(AndroidSchedulers.mainThread())
+                .subscribe(response -> {
+                    if (response.body() != null && !response.body().getData().isEmpty()) {
+                        Toast.makeText(getBaseContext(), "Register New Token Successfully", Toast.LENGTH_SHORT).show();
+                        SharedPreferences.Editor editor = preferences.edit();
+                        editor.putBoolean(IS_FCM_REGISTERED, true);
+                        editor.apply();
+                    } else if (response.code() == 401)
+                        refreshAndResendFcmToken(fcmToken);
 
+                    else
+                        Toast.makeText(getBaseContext(), "Register Fcm Token Failure", Toast.LENGTH_SHORT).show();
+                }, error -> {
+                    Toast.makeText(getBaseContext(),
+                            "Can't Connect With Server\nto Send Fcm Token",
+                            Toast.LENGTH_SHORT).show();
 
-                if (response.body() != null && !response.body().getData().isEmpty()){
-                    Toast.makeText(getBaseContext(), "Register New Token Successfully", Toast.LENGTH_SHORT).show();
-                    SharedPreferences.Editor editor = preferences.edit();
-                    editor.putBoolean(IS_FCM_REGISTERED,true);
-                    editor.apply();
-                }
+                    error.printStackTrace();
+                });
 
-                else if (response.code() == 401)
-                    refreshAndResendFcmToken(fcmToken);
-
-                else
-                    Toast.makeText(getBaseContext(), "Register Fcm Token Failure", Toast.LENGTH_SHORT).show();
-
-
-            }
-
-            @Override
-            public void onFailure(Call<Response<String>> call, Throwable t) {
-                Toast.makeText(getBaseContext(),
-                        "Can't Connect With Server\nto Send Fcm Token",
-                        Toast.LENGTH_SHORT).show();
-
-                t.printStackTrace();
-
-            }
-        });
 
     }
 
     private void refreshAndResendFcmToken(String fcmToken) {
 
-        Call<Response<LoginResponse>> refreshCall = service.refresh(refreshToken);
+        Single<Response<MyRes<LoginResponse>>> refreshObservable = service.refresh(refreshToken);
 
-        refreshCall.enqueue(new Callback<Response<LoginResponse>>() {
-            @Override
-            public void onResponse(Call<Response<LoginResponse>> call, retrofit2.Response<Response<LoginResponse>> response) {
+        //noinspection ResultOfMethodCallIgnored
+        refreshObservable.subscribeOn(Schedulers.io())
+                .subscribeOn(AndroidSchedulers.mainThread())
+                .subscribe(response -> {
 
-                if (response.isSuccessful() && response.body() != null) {
-                    String token = "Bearer " + response.body()
-                            .getData().getTokenResponse().getToken();
-                    sendFcmTokenToServer(fcmToken, token);
-                }
+                    if (response.isSuccessful() && response.body() != null) {
+                        String token = "Bearer " + response.body()
+                                .getData().getTokenResponse().getToken();
+                        sendFcmTokenToServer(fcmToken, token);
+                    }
 
-            }
-
-            @Override
-            public void onFailure(Call<Response<LoginResponse>> call, Throwable t) {
-
-                t.printStackTrace();
-
-            }
-        });
+                }, Throwable::printStackTrace);
 
 
     }
 
-    private void notifyUser (Map<String,String> messageData) {
+    private void notifyUser(Map<String, String> messageData) {
 
         String title = messageData.get("Title");
         String body = messageData.get("Body");
@@ -180,7 +166,6 @@ public class MessagingService extends FirebaseMessagingService {
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 .setContentIntent(pendingIntent)
                 .setAutoCancel(true);
-
 
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {

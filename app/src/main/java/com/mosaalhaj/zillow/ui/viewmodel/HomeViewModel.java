@@ -5,21 +5,26 @@ import androidx.lifecycle.ViewModel;
 
 import com.mosaalhaj.zillow.api.PostApiService;
 import com.mosaalhaj.zillow.api.RetrofitSingleton;
+import com.mosaalhaj.zillow.model.MyRes;
 import com.mosaalhaj.zillow.model.Post;
-import com.mosaalhaj.zillow.model.Response;
 import com.mosaalhaj.zillow.response.PagingResponse;
 
 import java.util.ArrayList;
 
-import retrofit2.Call;
-import retrofit2.Callback;
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.annotations.NonNull;
+import io.reactivex.rxjava3.core.Single;
+import io.reactivex.rxjava3.core.SingleObserver;
+import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 
 import static com.mosaalhaj.zillow.item.Constants.UN_AUTHORIZED;
 
 public class HomeViewModel extends ViewModel {
 
-    public MutableLiveData<Response<PagingResponse<ArrayList<Post>>>> liveData ;
+    public MutableLiveData<MyRes<PagingResponse<ArrayList<Post>>>> liveData ;
     private final PostApiService service;
 
     public HomeViewModel (){
@@ -34,45 +39,38 @@ public class HomeViewModel extends ViewModel {
 
         final int pageSize = 10 ;
 
-        Call<Response<PagingResponse<ArrayList<Post>>>> postsCall =
+        Single<Response<MyRes<PagingResponse<ArrayList<Post>>>>> postsObservable =
                 service.getAllPosts(page,pageSize,token);
 
-        postsCall.enqueue(new Callback<Response<PagingResponse<ArrayList<Post>>>>() {
-            @Override
-            public void onResponse(Call<Response<PagingResponse<ArrayList<Post>>>> call, retrofit2.Response<Response<PagingResponse<ArrayList<Post>>>> response) {
+        //noinspection ResultOfMethodCallIgnored
+        postsObservable.subscribeOn(Schedulers.io())
+       .observeOn(AndroidSchedulers.mainThread())
+       .subscribe(response->{
+           MyRes<PagingResponse<ArrayList<Post>>> postsResponse;
 
-                Response<PagingResponse<ArrayList<Post>>> postsResponse;
+           if (response.code() == 200 && response.body()!= null)
+               postsResponse =
+                       new MyRes<>(true,response.body().getMessage()
+                               ,response.body().getData());
 
-                if (response.code() == 200 && response.body()!= null)
-                    postsResponse =
-                            new Response<>(true,response.body().getMessage()
-                                    ,response.body().getData());
+           else if (response.code() == 401){
+               postsResponse =
+                       new MyRes<>(false,UN_AUTHORIZED
+                               ,null);
+           }
+           else
+               postsResponse =
+                       new MyRes<>(false,"Error When Get Data"
+                               ,null);
 
-                else if (response.code() == 401){
-                    postsResponse =
-                            new Response<>(false,UN_AUTHORIZED
-                                    ,null);
-                }
-                else
-                    postsResponse =
-                            new Response<>(false,"Error When Get Data"
-                                    ,null);
+           liveData.setValue(postsResponse);
+       },error->{
+           MyRes<PagingResponse<ArrayList<Post>>> postsResponse =
+                   new MyRes<>(false,"Can't Connect With Server"
+                           ,null);
 
-                liveData.setValue(postsResponse);
-
-            }
-
-            @Override
-            public void onFailure(Call<Response<PagingResponse<ArrayList<Post>>>> call, Throwable t) {
-
-                Response<PagingResponse<ArrayList<Post>>> postsResponse =
-                        new Response<>(false,"Can't Connect With Server"
-                                ,null);
-
-                liveData.setValue(postsResponse);
-
-            }
-        });
+           liveData.setValue(postsResponse);
+       });
 
 
     }

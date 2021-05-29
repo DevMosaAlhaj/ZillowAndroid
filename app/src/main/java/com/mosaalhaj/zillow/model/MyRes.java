@@ -1,12 +1,14 @@
 package com.mosaalhaj.zillow.model;
 
-public class Response<T> {
+public class MyRes<T> {
+
+    // This class is a static server response
 
     private final boolean succeeded;
     private final String message;
     private final T data;
 
-    public Response(boolean succeeded, String message, T data) {
+    public MyRes(boolean succeeded, String message, T data) {
         this.succeeded = succeeded;
         this.message = message;
         this.data = data;

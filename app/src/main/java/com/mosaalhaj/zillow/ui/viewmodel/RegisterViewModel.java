@@ -5,17 +5,19 @@ import androidx.lifecycle.ViewModel;
 
 import com.mosaalhaj.zillow.api.RetrofitSingleton;
 import com.mosaalhaj.zillow.api.UserApiService;
-import com.mosaalhaj.zillow.model.Response;
+import com.mosaalhaj.zillow.model.MyRes;
 import com.mosaalhaj.zillow.model.User;
 
-import retrofit2.Call;
-import retrofit2.Callback;
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Single;
+import io.reactivex.rxjava3.schedulers.Schedulers;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class RegisterViewModel extends ViewModel {
 
-    public MutableLiveData<Response<String>> liveData;
     private final UserApiService service;
+    public MutableLiveData<MyRes<String>> liveData;
 
     public RegisterViewModel() {
         liveData = new MutableLiveData<>();
@@ -28,28 +30,26 @@ public class RegisterViewModel extends ViewModel {
 
         // Create New Account With Retrofit
 
-        Call<Response<String>> createUserCall = service.create(user);
+        Single<Response<MyRes<String>>> userObservable = service.create(user);
 
-        createUserCall.enqueue(new Callback<Response<String>>() {
-            @Override
-            public void onResponse(Call<Response<String>> call, retrofit2.Response<Response<String>> response) {
-                if (response.isSuccessful() && response.body() != null)
-                    liveData.setValue(response.body());
-                else {
-                    Response<String> createUserResponse =
-                            new Response<String>(false, "Error When Create User", null);
+
+        //noinspection ResultOfMethodCallIgnored
+        userObservable.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(response -> {
+                    if (response.isSuccessful() && response.body() != null)
+                        liveData.setValue(response.body());
+                    else {
+                        MyRes<String> createUserResponse =
+                                new MyRes<>(false, "Error When Create User", null);
+                        liveData.setValue(createUserResponse);
+                    }
+                }, error -> {
+                    MyRes<String> createUserResponse =
+                            new MyRes<>(false, "Can't Connect With Server", null);
                     liveData.setValue(createUserResponse);
-                }
+                });
 
-            }
-
-            @Override
-            public void onFailure(Call<Response<String>> call, Throwable t) {
-                Response<String> createUserResponse =
-                        new Response<>(false, "Can't Connect With Server", null);
-                liveData.setValue(createUserResponse);
-            }
-        });
 
     }
 

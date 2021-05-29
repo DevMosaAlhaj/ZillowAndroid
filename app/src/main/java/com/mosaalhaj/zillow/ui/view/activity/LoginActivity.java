@@ -16,7 +16,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.mosaalhaj.zillow.R;
 import com.mosaalhaj.zillow.databinding.ActivityLoginBinding;
-import com.mosaalhaj.zillow.model.Response;
+import com.mosaalhaj.zillow.model.MyRes;
 import com.mosaalhaj.zillow.response.LoginResponse;
 import com.mosaalhaj.zillow.ui.viewmodel.LoginViewModel;
 
@@ -35,7 +35,7 @@ public class LoginActivity extends AppCompatActivity {
     private LoginViewModel viewModel;
     private ActivityLoginBinding binding;
     private boolean emailValid = false, passwordValid = false;
-    private SharedPreferences preferences ;
+    private SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,16 +45,16 @@ public class LoginActivity extends AppCompatActivity {
         binding.setViewModel(viewModel);
         binding.setLifecycleOwner(this);
 
-        preferences = getSharedPreferences(SHARED_PREFERENCE_FILE,MODE_PRIVATE);
+        preferences = getSharedPreferences(SHARED_PREFERENCE_FILE, MODE_PRIVATE);
 
-        Observer<Response<LoginResponse>> observer = response -> {
+        Observer<MyRes<LoginResponse>> observer = response -> {
 
             if (response.isSucceeded() && response.getData() != null) {
 
-                try{
+                try {
 
                     storeUserData(response.getData());
-                }catch (Exception ex){
+                } catch (Exception ex) {
                     ex.printStackTrace();
                 }
 
@@ -121,7 +121,7 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence pass, int start, int before, int count) {
-                if (pass.length() < 7 ) {
+                if (pass.length() < 7) {
                     passwordValid = false;
                     binding.loginEtPassword.setError("Make Sure Password Contain numbers & characters");
                 } else
@@ -170,26 +170,25 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     @SuppressLint({"CommitPrefEdits", "ApplySharedPref"})
-    private void storeUserData (LoginResponse loginResponse){
-         SharedPreferences.Editor editor = preferences.edit();
+    private void storeUserData(LoginResponse loginResponse) {
+        SharedPreferences.Editor editor = preferences.edit();
 
-         editor.putString(USER_ID,loginResponse.getUserId());
-         editor.putString(REFRESH_TOKEN,loginResponse.getRefreshToken());
-         editor.putString(ACCESS_TOKEN,loginResponse.getTokenResponse().getToken());
-         if (binding.loginCbRememberMe.isChecked()){
+        editor.putString(USER_ID, loginResponse.getUserId());
+        editor.putString(REFRESH_TOKEN, loginResponse.getRefreshToken());
+        editor.putString(ACCESS_TOKEN, loginResponse.getTokenResponse().getToken());
+        if (binding.loginCbRememberMe.isChecked()) {
 
-             String email = binding.loginEtEmail.getText().toString();
-             String pass = binding.loginEtPassword.getText().toString();
+            String email = binding.loginEtEmail.getText().toString();
+            String pass = binding.loginEtPassword.getText().toString();
 
-             editor.putString(USER_EMAIL,email);
-             editor.putString(USER_PASSWORD,pass);
-             editor.putBoolean(REMEMBER_ME,true);
-         } else
-             editor.putBoolean(REMEMBER_ME,false);
+            editor.putString(USER_EMAIL, email);
+            editor.putString(USER_PASSWORD, pass);
+            editor.putBoolean(REMEMBER_ME, true);
+        } else
+            editor.putBoolean(REMEMBER_ME, false);
 
-         editor.commit();
+        editor.commit();
     }
-
 
 
 }
