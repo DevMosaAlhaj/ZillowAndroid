@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
+import androidx.viewpager.widget.ViewPager;
 
 import com.mosaalhaj.zillow.R;
 import com.mosaalhaj.zillow.adapter.HomePagerAdapter;
@@ -27,11 +28,26 @@ public class HomeActivity extends AppCompatActivity {
 
         binding.homeViewPager.setAdapter(adapter);
 
-
-
         binding.homeViewPager.setCurrentItem(0);
 
-        binding.homeBar.setOnNavigationItemSelectedListener(item -> {
+        binding.homeViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                binding.homeBottomNav.getMenu().getItem(position).setChecked(true);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
+        binding.homeBottomNav.setOnNavigationItemSelectedListener(item -> {
 
             switch (item.getItemId()){
                 case R.id.home_nav_bar_home:

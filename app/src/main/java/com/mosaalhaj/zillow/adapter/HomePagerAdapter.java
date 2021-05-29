@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
+import com.mosaalhaj.zillow.ui.view.fragment.HomeFragment;
 import com.mosaalhaj.zillow.ui.view.fragment.PostFragment;
 
 public class HomePagerAdapter extends FragmentStatePagerAdapter {
@@ -20,7 +21,7 @@ public class HomePagerAdapter extends FragmentStatePagerAdapter {
     @Override
     public Fragment getItem(int position) {
 
-        return new PostFragment();
+        return new HomeFragment();
     }
 
     @Override
